@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import theme from '../theme';
 
 import Header from './Header';
+import RequestCard from './RequestCard';
 
 type Props = WithStyles<typeof styles>;
 
@@ -22,7 +23,7 @@ const App: React.FunctionComponent<Props> = ({ classes }) => {
             <Header />
             <main className={classes.root}>
                 <div className={classes.layout}>
-                    <Typography>App</Typography>
+                    <RequestCard />
                 </div>
             </main>
         </MuiThemeProvider>
