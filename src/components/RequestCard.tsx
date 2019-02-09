@@ -12,6 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 
+import ResponseCard from './ResponseCard';
+import BoxIcon from './BoxIcon';
+
 type Props = WithStyles<typeof styles>;
 
 const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
@@ -20,33 +23,39 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
         console.log(inputRef.current!!.value);
     };
     return (
-        <Card className={classes.root}>
-            <CardContent>
-                <Grid container spacing={8}>
-                    <Grid item md={10}>
-                        <TextField
-                            label="Your Request URL"
-                            placeholder="https://randomuser.me/api/"
-                            fullWidth
-                            inputRef={inputRef}
-                            variant="outlined"
-                        />
+        <>
+            <Card className={classes.root}>
+                <CardContent>
+                    <Grid container spacing={8}>
+                        <Grid item md={10}>
+                            <TextField
+                                label="Your Request URL"
+                                placeholder="https://randomuser.me/api/"
+                                fullWidth
+                                inputRef={inputRef}
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item md={2}>
+                            <Button
+                                className={classes.button}
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={handleLoad}
+                            >
+                                Send
+                                <SendIcon className={classes.iconRight} />
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Grid item md={2}>
-                        <Button
-                            className={classes.button}
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            onClick={handleLoad}
-                        >
-                            Send
-                            <SendIcon className={classes.iconRight} />
-                        </Button>
-                    </Grid>
-                </Grid>
-            </CardContent>
-        </Card>
+                </CardContent>
+            </Card>
+            <Grid container justify="center" className={classes.boxContainer}>
+                <BoxIcon height="128" width="128" color="#9e9e9e" />
+            </Grid>
+            <ResponseCard />
+        </>
     );
 };
 
@@ -60,6 +69,9 @@ const styles = ({ spacing }: Theme) =>
         },
         iconRight: {
             marginLeft: spacing.unit
+        },
+        boxContainer: {
+            marginTop: spacing.unit * 2
         }
     });
 
