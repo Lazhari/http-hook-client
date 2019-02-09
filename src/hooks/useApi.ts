@@ -2,35 +2,42 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function useAPI(url: string) {
-    const [isLoading, setIsLoading] = useState(false);
-    const [data, setData] = useState(null);
-    const [error, setError] = useState('');
+    const [settings, setSettings] = useState({
+        isLoading: false,
+        data: null,
+        error: ''
+    });
 
     const fetchingDate = async () => {
-        setIsLoading(false);
+        setSettings({ ...settings, isLoading: true });
         try {
             const response = await axios.get(url);
-            setIsLoading(false);
-            setData(response.data);
+            console.log(response);
+            setSettings({
+                isLoading: false,
+                error: '',
+                data: response.data
+            });
         } catch (error) {
-            setError(error.message);
-            setIsLoading(false);
+            setSettings({
+                isLoading: false,
+                error: error.message,
+                data: null
+            });
         }
         return () => {
-            setIsLoading(false);
-            setError('');
-            setData(null);
+            setSettings({
+                isLoading: false,
+                error: '',
+                data: null
+            });
         };
     };
 
     useEffect(() => {
         fetchingDate();
     }, [url]);
-    return {
-        isLoading,
-        data,
-        error
-    };
+    return settings;
 }
 
 export default useAPI;
