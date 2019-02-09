@@ -1,7 +1,7 @@
 {
     "name": "hook-http-client",
     "version": "0.1.0",
-    "homepage": "http://lazhari.github.io/http-hook-client",
+    "homepage": "https://lazhari.github.io/http-hook-client",
     "private": true,
     "dependencies": {
         "@material-ui/core": "^3.9.2",
