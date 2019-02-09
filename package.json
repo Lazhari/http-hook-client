@@ -1,7 +1,12 @@
 {
     "name": "hook-http-client",
     "version": "0.1.0",
-    "homepage": "http://lazhari.github.io/http-hook-client",
+    "homepage": "https://lazhari.github.io/http-hook-client",
+    "author": {
+        "email": "mlazhari@outlook.com",
+        "name": "Med Lazhari",
+        "url": "https://githib.com/lazhari"
+    },
     "private": true,
     "dependencies": {
         "@material-ui/core": "^3.9.2",
@@ -22,8 +27,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "deploy": "gh-pages -d build"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -35,9 +39,9 @@
         "not op_mini all"
     ],
     "devDependencies": {
-        "gh-pages": "^2.0.1",
         "tslint-config-prettier": "^1.18.0",
         "tslint-react": "^3.6.0",
         "tslint-react-hooks": "^1.1.0"
-    }
+    },
+    "license": "MIT"
 }
