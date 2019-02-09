@@ -1,5 +1,7 @@
 # HTTP HooK Client
 
+[![Build Status](https://travis-ci.org/Lazhari/http-hook-client.svg?branch=master)](https://travis-ci.org/Lazhari/http-hook-client)
+
 A simple React application for an HTTP client, using hooks with zero class.
 
 You can view a live demo at [https://lazhari.github.io/http-hook-client](https://lazhari.github.io/http-hook-client)
