@@ -35,9 +35,10 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
                         <Grid item md={10}>
                             <TextField
                                 label="Your Request URL"
-                                placeholder="https://randomuser.me/api/"
+                                placeholder="https://api.github.com"
                                 fullWidth
                                 inputRef={inputRef}
+                                defaultValue="https://api.github.com"
                                 variant="outlined"
                             />
                         </Grid>
@@ -84,7 +85,7 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
                     <CircularProgress />
                 </Grid>
             )}
-            {data && <ResponseCard data={data} />}
+            {data && !isLoading && <ResponseCard data={data} />}
         </>
     );
 };
