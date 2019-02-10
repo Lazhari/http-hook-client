@@ -32,7 +32,7 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
             <Card className={classes.root}>
                 <CardContent>
                     <Grid container spacing={8}>
-                        <Grid item md={10}>
+                        <Grid item md={10} sm={9} xs={12}>
                             <TextField
                                 label="Your Request URL"
                                 placeholder="https://api.github.com"
@@ -42,7 +42,7 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
                                 variant="outlined"
                             />
                         </Grid>
-                        <Grid item md={2}>
+                        <Grid item md={2} sm={3} xs={12}>
                             <Button
                                 className={classes.button}
                                 fullWidth
