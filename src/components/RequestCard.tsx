@@ -21,7 +21,7 @@ import BoxIcon from './BoxIcon';
 type Props = WithStyles<typeof styles>;
 
 const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
-    const [url, setUrl] = useState('https://randomuser.me/api/');
+    const [url, setUrl] = useState('https://api.github.com');
     const inputRef = useRef<HTMLInputElement>(null);
     const { isLoading, error, data } = useApi(url);
     const handleLoad = () => {
