@@ -17,15 +17,22 @@ import Typography from '@material-ui/core/Typography';
 import useApi from '../hooks/useApi';
 import ResponseCard from './ResponseCard';
 import BoxIcon from './BoxIcon';
+import Axios from 'axios';
 
 type Props = WithStyles<typeof styles>;
 
 const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
+    // this needs to be moved , to hundle axios instances in all the app
+    const axiosClientInit = Axios.create();
+
     const [url, setUrl] = useState('https://api.github.com');
     const inputRef = useRef<HTMLInputElement>(null);
-    const { isLoading, error, data } = useApi(url);
+    const { isLoading, error, data } = useApi<JSON>(
+        { url: url, method: 'get' },
+        axiosClientInit
+    );
     const handleLoad = () => {
-        setUrl(inputRef.current!!.value);
+        inputRef.current!!.value === url || setUrl(inputRef.current!!.value);
     };
     return (
         <>

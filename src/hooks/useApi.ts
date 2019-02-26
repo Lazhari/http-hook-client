@@ -1,42 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-function useAPI(url: string) {
-    const [settings, setSettings] = useState({
-        isLoading: false,
-        data: null,
-        error: ''
-    });
-
-    const fetchingDate = async () => {
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import UseApiResponse from '../models/UseApiResponse';
+function useAPI<T>(
+    options: AxiosRequestConfig,
+    client: AxiosInstance
+): UseApiResponse<T> {
+    const [settings, setSettings] = useState(new UseApiResponse<T>());
+    const fetchingData = async () => {
         setSettings({ ...settings, isLoading: true });
         try {
-            const response = await axios.get(url);
+            const response = await client.request<T>(options);
             console.log(response);
             setSettings({
-                isLoading: false,
                 error: '',
+                isLoading: false,
                 data: response.data
             });
         } catch (error) {
             setSettings({
+                data: null,
                 isLoading: false,
-                error: error.message,
-                data: null
+                error: error.message
             });
         }
         return () => {
-            setSettings({
-                isLoading: false,
-                error: '',
-                data: null
-            });
+            setSettings(new UseApiResponse<T>());
         };
     };
 
     useEffect(() => {
-        fetchingDate();
-    }, [url]);
+        fetchingData();
+    }, [options.url, options.method, options.data, options.params]);
     return settings;
 }
 
