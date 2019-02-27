@@ -3,7 +3,8 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import UseApiResponse from '../models/UseApiResponse';
 function useAPI<T>(
     options: AxiosRequestConfig,
-    client: AxiosInstance
+    client: AxiosInstance,
+    update: boolean
 ): UseApiResponse<T> {
     const [settings, setSettings] = useState(new UseApiResponse<T>());
     const fetchingData = async () => {
@@ -30,7 +31,7 @@ function useAPI<T>(
 
     useEffect(() => {
         fetchingData();
-    }, [options.url, options.method, options.data, options.params]);
+    }, [update]);
     return settings;
 }
 
