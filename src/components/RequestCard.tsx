@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, ChangeEvent } from 'react';
 import {
     createStyles,
     Theme,
@@ -17,29 +17,44 @@ import Typography from '@material-ui/core/Typography';
 import useApi from '../hooks/useApi';
 import ResponseCard from './ResponseCard';
 import BoxIcon from './BoxIcon';
-import Axios from 'axios';
+import CreateAxiosInstance from '../config/AxiosInstanceConfig';
+import MethodSelect from './MethodSelect';
 
 type Props = WithStyles<typeof styles>;
 
 const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
-    // this needs to be moved , to hundle axios instances in all the app
-    const axiosClientInit = Axios.create();
+    // this needs to be moved to a higher order component , because it needs to be globaly available.
+    const axiosClient = CreateAxiosInstance;
 
     const [url, setUrl] = useState('https://api.github.com');
+    const [method, setMethod] = useState('GET');
+
     const inputRef = useRef<HTMLInputElement>(null);
     const { isLoading, error, data } = useApi<JSON>(
-        { url: url, method: 'get' },
-        axiosClientInit
+        { url: url, method: method },
+        axiosClient
     );
+
     const handleLoad = () => {
         inputRef.current!!.value === url || setUrl(inputRef.current!!.value);
     };
+
+    const hundleMethodChange = (newMethod: string) => {
+        setMethod(newMethod);
+    };
+
     return (
         <>
             <Card className={classes.root}>
                 <CardContent>
                     <Grid container spacing={8}>
-                        <Grid item md={10} sm={9} xs={12}>
+                        <Grid item md={1} sm={1} xs={12}>
+                            <MethodSelect
+                                method={method}
+                                onChangeHundler={hundleMethodChange}
+                            />
+                        </Grid>
+                        <Grid item md={9} sm={9} xs={12}>
                             <TextField
                                 label="Your Request URL"
                                 placeholder="https://api.github.com"
@@ -49,7 +64,7 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
                                 variant="outlined"
                             />
                         </Grid>
-                        <Grid item md={2} sm={3} xs={12}>
+                        <Grid item md={2} sm={2} xs={12}>
                             <Button
                                 className={classes.button}
                                 fullWidth
