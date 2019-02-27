@@ -52,13 +52,13 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
             <Card className={classes.root}>
                 <CardContent>
                     <Grid container spacing={8}>
-                        <Grid item md={1} sm={1} xs={12}>
+                        <Grid item md={1} sm={2} xs={4}>
                             <MethodSelect
                                 method={method}
                                 onChangeHundler={hundleMethodChange}
                             />
                         </Grid>
-                        <Grid item md={9} sm={9} xs={12}>
+                        <Grid item md={9} sm={8} xs={8}>
                             <TextField
                                 label="Your Request URL"
                                 placeholder="https://api.github.com"
