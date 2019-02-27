@@ -28,15 +28,19 @@ const RequestCard: React.FunctionComponent<Props> = ({ classes }) => {
 
     const [url, setUrl] = useState('https://api.github.com');
     const [method, setMethod] = useState('GET');
+    const [update, setUpdate] = useState(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const { isLoading, error, data } = useApi<JSON>(
         { url: url, method: method },
-        axiosClient
+        axiosClient,
+        update
     );
 
     const handleLoad = () => {
-        inputRef.current!!.value === url || setUrl(inputRef.current!!.value);
+        // inputRef.current!!.value === url ||
+        setUrl(inputRef.current!!.value);
+        setUpdate(!update);
     };
 
     const hundleMethodChange = (newMethod: string) => {

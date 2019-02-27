@@ -32,8 +32,8 @@ const MethodSelect: React.FunctionComponent<{
                     />
                 }
             >
-                {methods.map((methodStringName: string) => (
-                    <MenuItem value={methodStringName}>
+                {methods.map((methodStringName: string, index: number) => (
+                    <MenuItem key={index} value={methodStringName}>
                         {methodStringName}
                     </MenuItem>
                 ))}
